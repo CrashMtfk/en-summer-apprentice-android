@@ -1,6 +1,10 @@
 package com.practica.tms_android;
 
-public class EventCardModel {
+import android.widget.Button;
+
+import java.io.Serializable;
+
+public class EventCardModel implements Serializable {
     private String eventName;
     private String eventDescription;
     private String eventPeriod;

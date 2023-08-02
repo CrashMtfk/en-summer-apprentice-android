@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +16,7 @@ public class EventCardAdapter extends RecyclerView.Adapter<EventCardAdapter.MyVi
 
     Context context;
     ArrayList<EventCardModel> eventCardModels;
+    private OnClickListener onClickListener;
 
     public EventCardAdapter(Context context, ArrayList<EventCardModel> eventCardModels){
             this.context = context;
@@ -36,6 +37,14 @@ public class EventCardAdapter extends RecyclerView.Adapter<EventCardAdapter.MyVi
         holder.description.setText(eventCardModels.get(position).getEventDescription());
         holder.period.setText(eventCardModels.get(position).getEventPeriod());
         holder.location.setText(eventCardModels.get(position).getEventLocation());
+        holder.buyTicketsButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                if (onClickListener != null){
+                    onClickListener.onClick(position, eventCardModels.get(position));
+                }
+            }
+        });
     }
 
     @Override
@@ -43,9 +52,18 @@ public class EventCardAdapter extends RecyclerView.Adapter<EventCardAdapter.MyVi
         return eventCardModels.size();
     }
 
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+
+    public interface OnClickListener {
+        void onClick(int position, EventCardModel model);
+    }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView title, description, period, location;
+        Button buyTicketsButton;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -53,6 +71,7 @@ public class EventCardAdapter extends RecyclerView.Adapter<EventCardAdapter.MyVi
             description = itemView.findViewById(R.id.eventCardDescription);
             period = itemView.findViewById(R.id.eventCardPeriod);
             location = itemView.findViewById(R.id.eventCardLocation);
+            buyTicketsButton = itemView.findViewById(R.id.eventCardBuyButton);
         }
     }
 }

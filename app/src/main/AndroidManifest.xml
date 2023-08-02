@@ -20,6 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".PlaceOrderActivity"
+            android:label="Place Order Activity">
+        </activity>
     </application>
 
 </manifest>
