@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<List<EventDTO>> call, Throwable t) {
                         Toast.makeText(MainActivity.this, "Failed to load events", Toast.LENGTH_SHORT).show();
+                        Log.d("MainActivity", t.toString());
                     }
                 });
     }

@@ -5,13 +5,12 @@ import java.util.List;
 
 public class EventDTO {
     private Integer eventID;
-    private String venue;
+    private String venueLocation;
     private String eventTypeName;
     private String eventDescription;
     private String eventName;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private List<String> ticketCategorySet;
 
     public Integer getEventID() {
         return eventID;
@@ -21,12 +20,12 @@ public class EventDTO {
         this.eventID = eventID;
     }
 
-    public String getVenue() {
-        return venue;
+    public String getVenueLocation() {
+        return venueLocation;
     }
 
-    public void setVenue(String venue) {
-        this.venue = venue;
+    public void setVenueLocation(String venue) {
+        this.venueLocation = venue;
     }
 
     public String getEventTypeName() {
@@ -67,13 +66,5 @@ public class EventDTO {
 
     public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
-    }
-
-    public List<String> getTicketCategorySet() {
-        return ticketCategorySet;
-    }
-
-    public void setTicketCategorySet(List<String> ticketCategorySet) {
-        this.ticketCategorySet = ticketCategorySet;
     }
 }

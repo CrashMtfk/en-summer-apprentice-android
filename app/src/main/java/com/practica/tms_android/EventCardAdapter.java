@@ -40,7 +40,7 @@ public class EventCardAdapter extends RecyclerView.Adapter<EventCardAdapter.MyVi
         holder.title.setText(event.getEventName());
         holder.description.setText(event.getEventDescription());
         holder.period.setText(event.getStartDate().toString() + " " + event.getEndDate().toString());
-        holder.location.setText(event.getVenue());
+        holder.location.setText(event.getVenueLocation());
         holder.buyTicketsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){

@@ -9,6 +9,6 @@ import retrofit2.http.GET;
 
 public interface EventApi {
 
-    @GET("/events")
+    @GET("/all_events")
     Call<List<EventDTO>> getAllEvents();
 }
