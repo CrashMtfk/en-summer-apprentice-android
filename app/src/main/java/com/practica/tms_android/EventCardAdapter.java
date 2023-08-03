@@ -10,15 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.practica.tms_android.models.EventDTO;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class EventCardAdapter extends RecyclerView.Adapter<EventCardAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<EventCardModel> eventCardModels;
+    List<EventDTO> eventCardModels;
     private OnClickListener onClickListener;
 
-    public EventCardAdapter(Context context, ArrayList<EventCardModel> eventCardModels){
+    public EventCardAdapter(Context context, List<EventDTO> eventCardModels){
             this.context = context;
             this.eventCardModels = eventCardModels;
     }
@@ -33,15 +36,16 @@ public class EventCardAdapter extends RecyclerView.Adapter<EventCardAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull EventCardAdapter.MyViewHolder holder, int position) {
-        holder.title.setText(eventCardModels.get(position).getEventName());
-        holder.description.setText(eventCardModels.get(position).getEventDescription());
-        holder.period.setText(eventCardModels.get(position).getEventPeriod());
-        holder.location.setText(eventCardModels.get(position).getEventLocation());
+        EventDTO event = eventCardModels.get(position);
+        holder.title.setText(event.getEventName());
+        holder.description.setText(event.getEventDescription());
+        holder.period.setText(event.getStartDate().toString() + " " + event.getEndDate().toString());
+        holder.location.setText(event.getVenue());
         holder.buyTicketsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 if (onClickListener != null){
-                    onClickListener.onClick(position, eventCardModels.get(position));
+                    onClickListener.onClick(position, event);
                 }
             }
         });
@@ -49,7 +53,7 @@ public class EventCardAdapter extends RecyclerView.Adapter<EventCardAdapter.MyVi
 
     @Override
     public int getItemCount() {
-        return eventCardModels.size();
+        return eventCardModels == null ? 0 : eventCardModels.size();
     }
 
     public void setOnClickListener(OnClickListener onClickListener) {
@@ -57,7 +61,7 @@ public class EventCardAdapter extends RecyclerView.Adapter<EventCardAdapter.MyVi
     }
 
     public interface OnClickListener {
-        void onClick(int position, EventCardModel model);
+        void onClick(int position, EventDTO model);
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

@@ -25,5 +25,6 @@
             android:label="Place Order Activity">
         </activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
