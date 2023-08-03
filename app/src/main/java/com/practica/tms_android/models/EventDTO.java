@@ -1,11 +1,12 @@
 package com.practica.tms_android.models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class EventDTO {
+public class EventDTO implements Serializable {
     private Integer eventID;
-    private String venueLocation;
+    private VenueDTO venue;
     private String eventTypeName;
     private String eventDescription;
     private String eventName;
@@ -20,12 +21,12 @@ public class EventDTO {
         this.eventID = eventID;
     }
 
-    public String getVenueLocation() {
-        return venueLocation;
+    public VenueDTO getVenue() {
+        return venue;
     }
 
-    public void setVenueLocation(String venue) {
-        this.venueLocation = venue;
+    public void setVenue(VenueDTO venue) {
+        this.venue = venue;
     }
 
     public String getEventTypeName() {

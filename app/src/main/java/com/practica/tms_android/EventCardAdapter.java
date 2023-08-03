@@ -1,6 +1,7 @@
 package com.practica.tms_android;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,8 +40,9 @@ public class EventCardAdapter extends RecyclerView.Adapter<EventCardAdapter.MyVi
         EventDTO event = eventCardModels.get(position);
         holder.title.setText(event.getEventName());
         holder.description.setText(event.getEventDescription());
-        holder.period.setText(event.getStartDate().toString() + " " + event.getEndDate().toString());
-        holder.location.setText(event.getVenueLocation());
+        holder.period.setText(formatDateString(event.getStartDate().toString(), event.getEndDate().toString()));
+        Log.d("EventCartAdapter", event.getVenue() + "object");
+        holder.location.setText(event.getVenue().getVenueLocation());
         holder.buyTicketsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -51,6 +53,12 @@ public class EventCardAdapter extends RecyclerView.Adapter<EventCardAdapter.MyVi
         });
     }
 
+    public String formatDateString(String startDate, String endDate){
+        String[] splitedStartDate = startDate.split("T");
+        String[] splitedEndDate = endDate.split("T");
+        String displayedText = "Period: " + splitedStartDate[0] + "-" + splitedEndDate[0];
+        return displayedText;
+    }
     @Override
     public int getItemCount() {
         return eventCardModels == null ? 0 : eventCardModels.size();

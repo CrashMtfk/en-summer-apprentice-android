@@ -3,6 +3,8 @@ package com.practica.tms_android;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -10,10 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.practica.tms_android.models.EventDTO;
 import com.practica.tms_android.retrofit.EventApi;
 import com.practica.tms_android.retrofit.RetrofitService;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.eventCardRecycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         setUpEventCardModels();
+
     }
 
     private void setUpEventCardModels(){
@@ -54,10 +59,23 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("MainActivity", t.toString());
                     }
                 });
+
     }
 
     private void populateEvents(List<EventDTO> eventsList) {
         EventCardAdapter eventCardAdapter = new EventCardAdapter(this,eventsList);
         recyclerView.setAdapter(eventCardAdapter);
+
+        eventCardAdapter.setOnClickListener(new EventCardAdapter.OnClickListener() {
+            @Override
+            public void onClick(int position, EventDTO model) {
+                Gson gson = new Gson();
+                String eventJsonString = gson.toJson(model);
+
+                Intent intent = new Intent(MainActivity.this, PlaceOrderActivity.class);
+                intent.putExtra(NEXT_SCREEN, eventJsonString);
+                startActivity(intent);
+            }
+        });
     }
 }
