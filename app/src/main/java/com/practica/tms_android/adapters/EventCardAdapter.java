@@ -1,7 +1,6 @@
-package com.practica.tms_android;
+package com.practica.tms_android.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.practica.tms_android.R;
 import com.practica.tms_android.models.EventDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EventCardAdapter extends RecyclerView.Adapter<EventCardAdapter.MyViewHolder> {
@@ -41,8 +40,7 @@ public class EventCardAdapter extends RecyclerView.Adapter<EventCardAdapter.MyVi
         holder.title.setText(event.getEventName());
         holder.description.setText(event.getEventDescription());
         holder.period.setText(formatDateString(event.getStartDate().toString(), event.getEndDate().toString()));
-        Log.d("EventCartAdapter", event.getVenue() + "object");
-        holder.location.setText(event.getVenue().getVenueLocation());
+        holder.location.setText("Location: " + event.getVenue().getVenueLocation());
         holder.buyTicketsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
