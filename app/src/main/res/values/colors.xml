@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="app_background">#2E294E</color>
+    <color name="event_card_background">#011028</color>
+    <color name="event_title">#51E5FF</color>
+    <color name="event_specs">#9288F8</color>
+    <color name="buttons_background">#DE639A</color>
 </resources>

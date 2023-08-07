@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TMS_Android"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31" >
         <activity
             android:name="com.practica.tms_android.MainActivity"
@@ -20,6 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".PlaceOrderActivity"
+            android:label="Place Order Activity">
+        </activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
